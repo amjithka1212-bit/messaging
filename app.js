@@ -2,7 +2,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // Replace these with your Supabase project values.
 // NEVER use the service_role/secret key in this file.
-const SUPABASE_URL = "https://nzjtfqwpgkmveybdgofu.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://nzjtfqwpgkmveybdgofu.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_8zRq1iuD6BHYAHajGb1uYg_dRUYQgi3";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
