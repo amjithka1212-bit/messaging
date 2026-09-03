@@ -97,8 +97,67 @@ function showLoggedIn(isLoggedIn) {
 // =====================================================
 // LOAD PREVIOUS 10 MESSAGES
 // =====================================================
-
 async function loadPreviousMessages() {
+
+    const box = document.querySelector("#messages");
+    const loading = document.querySelector("#messages-loading");
+
+    loading.textContent = "Loading...";
+    box.innerHTML = "";
+
+    console.log("Loading messages...");
+
+    const {
+        data,
+        error
+    } = await supabase
+        .from("messages")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(10);
+
+    console.log("Supabase data:", data);
+    console.log("Supabase error:", error);
+
+    if (error) {
+        loading.textContent = "ERROR: " + error.message;
+
+        console.error("Supabase error details:", error);
+
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        loading.textContent = "No messages found.";
+        return;
+    }
+
+    loading.textContent = "";
+
+    data.forEach(row => {
+
+        const item = document.createElement("div");
+        item.className = "message-item";
+
+        const text = document.createElement("div");
+        text.className = "message-text";
+
+        text.textContent = row.message || "(empty message)";
+
+        const date = document.createElement("div");
+        date.className = "message-date";
+
+        date.textContent = row.created_at
+            ? new Date(row.created_at).toLocaleString()
+            : "";
+
+        item.appendChild(text);
+        item.appendChild(date);
+
+        box.appendChild(item);
+    });
+}
+async function loadPreviousMessagesold() {
 
     const box =
         document.querySelector("#messages");
