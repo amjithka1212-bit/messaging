@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Private Messages</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="container">
+<section id="login-card" class="card">
+<h1>Private Messages</h1>
+<p class="muted">Enter the shared password to leave a message.</p>
+<form id="login-form">
+<label for="password">Password</label>
+<input id="password" type="password" autocomplete="current-password" required>
+<button type="submit">Login</button>
+</form>
+<p id="login-error" class="error"></p>
+</section>
+
+<section id="message-card" class="card hidden">
+<div class="topbar">
+<div><h1>Leave a message</h1><p class="muted">Your message will be stored privately.</p></div>
+<button id="logout" class="secondary">Logout</button>
+</div>
+<form id="message-form">
+<label for="message">Message</label>
+<textarea id="message" maxlength="2000" rows="8" required placeholder="Write your message here..."></textarea>
+<div class="counter"><span id="count">0</span>/2000</div>
+<button type="submit">Submit message</button>
+</form>
+<p id="message-status" class="status"></p>
+</section>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
